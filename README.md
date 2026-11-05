@@ -8,7 +8,7 @@ A Nuxt 4 sports-data app with a cinematic homepage and six sport routes. It uses
 
 ### Prerequisites
 
-- **Node.js 22 LTS (22.12 or newer).** `.nvmrc` pins `22.22.2`. Node 20 is not supported: several dependencies require Node 22, and `.npmrc` sets `engine-strict=true`, so npm refuses to install on an older Node.
+- **Node.js 22 LTS (22.22.3 or newer; 24.15+ also works).** `.nvmrc` pins `22.23.4`. Nuxt 4.6 requires `^22.22.3 || ^24.15.0 || >=26.0.0`. Node 20 is not supported: several dependencies require Node 22, and `.npmrc` sets `engine-strict=true`, so npm refuses to install on an older Node.
 - **npm 10 or 11.** npm 10 ships with Node 22. The lockfile is generated with npm 10 and also works with npm 11.
 - A C toolchain is **not** required. All native dependencies use prebuilt binaries.
 
@@ -53,7 +53,7 @@ Without nvm, install Node 22 any other way (fnm, Volta, asdf, official installer
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
-| `npm error code EBADENGINE` … `Required: {"node":">=22.12.0"}` | Shell is on Node 20 or older | `nvm use` (or `nvm alias default 22` to make it permanent), then `npm ci` again |
+| `npm error code EBADENGINE` … `Required: {"node":"^22.22.3 || ^24.15.0 || >=26.0.0"}` | Shell is on Node 20, or Node 22 older than 22.22.3 | `nvm use` (or `nvm alias default 22` to make it permanent), then `npm ci` again |
 | `npm ci can only install packages when your package.json and package-lock.json … are in sync` | Lockfile was edited with a different npm version, or `package.json` changed without the lockfile | On Node 22, run `npm install`, commit the updated `package-lock.json`, then `npm ci` |
 | `sh: 1: nuxt: not found` during `postinstall` | An earlier install step failed and `node_modules` is incomplete | Fix the first error in the log, then `rm -rf node_modules && npm ci` |
 | `gyp ERR!` while building `@parcel/watcher` | The prebuilt binary failed to extract, often because the disk or a quota is full (`TAR_ENTRY_ERROR … -122`) | Free disk space, then `npm ci` again |
